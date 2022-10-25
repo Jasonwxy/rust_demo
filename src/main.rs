@@ -14,24 +14,24 @@ struct Point(f64, f64);
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
-    heigth: u32,
+    height: u32,
 }
 
 impl Rectangle {
     fn area(&self) -> u32 {
-        self.width * self.heigth
+        self.width * self.height
     }
 
     fn wider(&self, rect: &Rectangle) -> bool {
         self.width > rect.width
     }
 
-    fn heiger(&self, rect: &Rectangle) -> bool {
-        self.heigth > rect.heigth
+    fn higher(&self, rect: &Rectangle) -> bool {
+        self.height > rect.height
     }
 
-    fn create(width:u32,heigth:u32) -> Rectangle{
-        Rectangle{width,heigth}
+    fn create(width:u32,height:u32) -> Rectangle{
+        Rectangle{width,height}
     }
 }
 
@@ -48,8 +48,8 @@ fn main() {
     borrow_demo();
     slice_demo();
     struct_demo();
-    tulpe_struct_demo();
-    struct_funcation();
+    tuple_struct_demo();
+    struct_function();
     enum_demo();
     demo::show_text();
     string_demo();
@@ -70,9 +70,9 @@ fn first_word(s: &String) -> &str {
 
 
 fn greet_world(){
-    let chiness = "世界，你好";
+    let chinese = "世界，你好";
     let english = "hello world";
-    let regions = [chiness,english];
+    let regions = [chinese,english];
     for region in regions{
         println!("{}",&region);
     }
@@ -98,23 +98,23 @@ fn match_book(book: Book) {
     }
 }
 
-fn struct_funcation() {
+fn struct_function() {
     let rect1 = Rectangle {
         width: 40,
-        heigth: 50,
+        height: 50,
     };
     println!("rect1's area is {}", rect1.area());
     let rect2 = Rectangle {
         width: 30,
-        heigth: 70,
+        height: 70,
     };
     println!("rect2's area is {}",rect2.area());
-    println!("{},{}",rect1.wider(&rect2),rect1.heiger(&rect2));
+    println!("{},{}",rect1.wider(&rect2),rect1.higher(&rect2));
     let rect3 = Rectangle::create(50, 60);
     println!("rect3 is {:#?}",rect3)
 }
 
-fn tulpe_struct_demo() {
+fn tuple_struct_demo() {
     let black = Color(0, 0, 0);
     let origin = Point(0.0, 0.0);
     println!("black is ({},{},{})", black.0, black.1, black.2);
