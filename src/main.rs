@@ -1,6 +1,6 @@
 mod demo;
 use std::fs::File;
-use std::io::ErrorKind;
+use std::io::{ErrorKind, Write};
 
 
 #[derive(Debug)]
@@ -67,9 +67,11 @@ fn result_demo(){
         Ok(file) => file,
         Err(error) => match error.kind() {
             ErrorKind::NotFound => match File::create("file.txt"){
-                Ok(fc) => fc,
+                Ok(mut fc) => {
+                    fc.write_all(b"this is a new").expect("can not write file");
+                    fc
+                },
                 Err(e) => panic!("Problem creating the file: {:?}", e),  
-
             },
             other_error => panic!("Problem opening the file: {:?}", other_error),            
         },
